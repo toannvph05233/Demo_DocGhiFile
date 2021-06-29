@@ -1,4 +1,8 @@
-public class Nguoi {
+import java.io.Serializable;
+
+public class Nguoi implements Serializable{
+    private static final long serialVersionUID = 8683452581122892189L;
+
     private String name;
     private int age;
     private String gender;

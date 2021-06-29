@@ -2,28 +2,47 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class DocGhiFile {
-    File nguoi = new File("nguoi.csv");
-    String tieuDe = "Name,Age,Gender,Phone";
-    static BufferedWriter bufferedWriter;
-    static BufferedReader bufferedReader;
+    public static void main(String[] args) {
+//        ghi();
+        doc();
+    }
 
-    public void ghiFile(ArrayList<Nguoi> list) throws Exception {
-        FileWriter fileWriter = new FileWriter(nguoi);
-        bufferedWriter = new BufferedWriter(fileWriter);
-        bufferedWriter.write(tieuDe);
-        for (Nguoi n : list) {
-            bufferedWriter.newLine();
-            bufferedWriter.write(n.ghi());
+    public static void ghi() {
+        File nguoi = new File("nguoi.txt");
+        FileWriter fileWriter = null;
+        try {
+            nguoi.createNewFile();
+            fileWriter = new FileWriter(nguoi);
+            fileWriter.write("nguyễn văn toàn");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fileWriter.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public void docFile(ArrayList<Nguoi> list) throws Exception {
-        FileReader fileReader = new FileReader(nguoi);
-        bufferedReader = new BufferedReader(fileReader);
-        String line = bufferedReader.readLine();
-        while ((line = bufferedReader.readLine()) != null) {
-            String[] arr = line.split(",");
-            list.add(new Nguoi(arr[0], Integer.parseInt(arr[1]), arr[2], arr[3]));
+    public static void doc() {
+        File nguoi = new File("nguoi.txt");
+        try {
+            FileReader fileReader = new FileReader(nguoi);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line = "";
+            while ((line = bufferedReader.readLine()) != null){
+                System.out.println(line);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
+
+
 }

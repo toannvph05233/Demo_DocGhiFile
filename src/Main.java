@@ -4,23 +4,20 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Nguoi> nguois = new ArrayList<>();
-        DocGhiFile docGhiFile = new DocGhiFile();
+        DocGhiFileNhiPhan docGhiFile = new DocGhiFileNhiPhan();
+
+        nguois.add(new Nguoi("ToAn1444444444", 4, "a", "a"));
+        nguois.add(new Nguoi("ToAn24444444444", 4, "a", "a"));
 
         try {
-            docGhiFile.docFile(nguois);
+            docGhiFile.ghiFile(nguois);
+            nguois = docGhiFile.docFile();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                DocGhiFile.bufferedReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
-        for (Nguoi n : nguois) {
+        for (Nguoi n:nguois) {
             System.out.println(n.ghi());
         }
-
     }
 }
